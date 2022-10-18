@@ -12,7 +12,7 @@ real lininterp1d(real x, vector x_colvec, vector y_colvec){
     i = 1;
     real minDeltas;
     minDeltas = min(abs(deltas));
-    for (d in deltas) {
+    for (d in abs(deltas)) {
         if (minDeltas == d){
             break;
         }
