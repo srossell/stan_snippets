@@ -20,17 +20,18 @@ real lininterp1d(real x, vector x_colvec, vector y_colvec){
         i += 1;
         }
     }
-    // Input checks
-    if(x<x_colvec[1] || x>x_colvec[K]) reject("x is outside of the x_colvec grid!");
-    if(rows(y_colvec) != K) reject("x_colvec and y_colvec aren't of the same size");
-    // end Input checks
+    if ((i + 1) >= K){
+        i = K -1;
+    }
+    if ((deltas[i] <= 0) && (i >=2)){
+        i -=1;
+    }
     real x1 = x_colvec[i];
     real x2 = x_colvec[i + 1];
     real y1 = y_colvec[i];
     real y2 = y_colvec[i + 1];
     m = ((y2 - y1)/(x2 - x1));
-    b = y1 - (m * x1);
-    y = (m * x) + b;
+    y = (m * (x - x1)) + y1;
     return y;
   }
 
